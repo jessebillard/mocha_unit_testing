@@ -53,6 +53,17 @@ const Calculate = {
             }
         })
         return indexArray.length > 1 ? biggestGap - 1 : 0
+    },
+
+    removeDuplicatesNonDestructively(nums) {
+        const trimmed = nums.reduce((acc, val) => {
+            if (!acc.includes(val)) {
+                acc.push(val)
+            }
+            return acc
+        }, [])
+        // console.log(trimmed)
+        return trimmed
     }
 
 }

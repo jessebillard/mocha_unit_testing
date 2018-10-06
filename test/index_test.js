@@ -92,4 +92,17 @@ describe('Calculate', () => {
             assert.equal(result, expected)
         })
     })
+    describe('.removeDuplicatesNonDestructively', () => {
+        it('does not modify the original array', () => {
+            const array = [0, 0, 1, 1, 2]
+            const result = Calculate.removeDuplicatesNonDestructively(array)
+            assert.equal(array.length, 5)
+        })
+        it('removes duplicate integers from array', () => {
+            const array = [0, 0, 0, 1, 1, 1, 1, 2, 3, 3, 3, 4, 4]
+            const expected = [0, 1, 2, 3, 4]
+            const result = Calculate.removeDuplicatesNonDestructively(array)
+            assert.deepEqual(result, expected)
+        })
+    })
 })
