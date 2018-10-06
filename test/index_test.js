@@ -72,4 +72,24 @@ describe('Calculate', () => {
             assert.ok(!result)
         })
     })
+    describe('.binaryGap', () => {
+        it('calculates the biggest gap (made up of zeros) between ones in a binary sequence', () => {
+            const num = 1041
+            const expected = 5
+            const result = Calculate.binaryGap(num)
+            assert.equal(result, expected)
+        })
+        it('retuns 0 if there are no binary gaps because there are no zeros', () => {
+            const num = 15
+            const expected = 0
+            const result = Calculate.binaryGap(num)
+            assert.equal(result, expected)
+        })
+        it('returns 0 if there are no binary gaps because of unclosed trailing zeros', () => {
+            const num = 32
+            const expected = 0
+            const result = Calculate.binaryGap(num)
+            assert.equal(result, expected)
+        })
+    })
 })
