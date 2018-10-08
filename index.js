@@ -64,6 +64,58 @@ const Calculate = {
         }, [])
         // console.log(trimmed)
         return trimmed
+    },
+
+    removeDuplicatesDestructively(nums) {
+        nums.sort((a, b) => a - b)
+        nums.forEach((num, index) => {
+            let counter = 1
+            if (num === nums[index + 1]) {            
+                while (num === nums[index + counter]) {
+                    counter++
+                }
+                nums.splice(index + 1, counter - 1)              
+            }        
+        })
+        return nums
+    },
+
+    isPermutation(array) {
+        // doesn't account for duplicates
+        array.sort((a, b) => a - b)
+        let initialValue = array[0]
+        let finalVal = 1
+        for (let i = 1; i < array.length; i++) {
+            if (array[i] !== initialValue + i) {
+                finalVal = 0
+            }
+        }
+        return finalVal
+    },
+
+    oddOccurrences(array) {
+        let result = 0
+        array.forEach(num => {
+            let counter = 0
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] === num) {
+                    counter++
+                }
+            }
+            if (counter % 2 !== 0) {
+                result = num
+            }
+        })
+        return result
+    },
+
+    rotateArray(array) {
+        while (rotations > 0) {
+            let lastOne = array.pop()
+            array.unshift(lastOne)
+            rotations--
+        }
+        return array
     }
 
 }

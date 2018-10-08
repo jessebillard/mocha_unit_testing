@@ -104,5 +104,31 @@ describe('Calculate', () => {
             const result = Calculate.removeDuplicatesNonDestructively(array)
             assert.deepEqual(result, expected)
         })
+        it('removes all duplicate integers from unsorted array', () => {
+            const array = [0, 0, 1, 1, 23, 211, 2, 5, 5, 211, 23]
+            const expected = [0, 1, 23, 211, 2, 5]
+            const result = Calculate.removeDuplicatesNonDestructively(array)
+            assert.deepEqual(result, expected)
+        })
+    })
+    describe('.removeDuplicatesDesctructively', () => {
+        it('modifies the original array', () => {
+            const array = [0, 0, 1, 1, 1, 2, 2, 2, 2]
+            const expected = [0, 1, 2]
+            const result = Calculate.removeDuplicatesDestructively(array)
+            assert.equal(result.length, expected.length)
+        })
+        it('removes all duplicate integers from array', () => {
+            const array = [0, 0, 1, 1, 1, 2, 2, 2, 2]
+            const expected = [0, 1, 2]
+            const result = Calculate.removeDuplicatesDestructively(array)
+            assert.deepEqual(result, expected)
+        })
+        it('removes all duplicate integers from a non-sorted array', () => {
+            const array = [0, 0, 1, 1, 23, 211, 2, 5, 5, 211, 23]
+            const expected = [0, 1, 2, 5, 23, 211]
+            const result = Calculate.removeDuplicatesDestructively(array)
+            assert.deepEqual(result, expected)
+        })
     })
 })
