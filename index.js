@@ -116,6 +116,73 @@ const Calculate = {
             rotations--
         }
         return array
+    },
+
+    // most examples seem to work, needs refactoring of course
+    // not passing a leetcode test when input is [1, 2] it's expecting 3...but that's not a contiguous subarray, that's summing the whole array!
+    maxSubArray(nums) {
+        const numsCopy = [...nums]
+        let largestSum = numsCopy.sort((a, b) => a - b)[0]    
+        if (nums.length === 1) return nums[0]
+        nums.forEach((num, index) => {
+            if (index > 0) {
+                for (let i = index + 1; i < nums.length + 1; i++) {               
+                let subArray = nums.slice(index, i)
+                // console.log('index:', index)
+                // console.log('i:', i)
+                // console.log('subArray:', subArray)
+                if (subArray.length > 0) {
+                    let sum = subArray.reduce((acc, val) => acc + val)  
+                    console.log('sum:', sum)
+                    if (sum > largestSum) {
+                        largestSum = sum
+                    }
+                }                        
+            }
+            }
+            for (let i = index + 1; i < nums.length; i++) {               
+                let subArray = nums.slice(index, i)
+                // console.log('index:', index)
+                // console.log('i:', i)
+                // console.log('subArray:', subArray)
+                if (subArray.length > 0) {
+                    let sum = subArray.reduce((acc, val) => acc + val)  
+                    console.log('sum:', sum)
+                    if (sum > largestSum) {
+                        largestSum = sum
+                    }
+                }                        
+            }
+        })    
+        return largestSum
+    },
+
+    valuesFromNestedObject(obj, values = []) {
+        for (prop in obj) {
+            if (Array.isArray(obj[prop])) {
+                values.push(...obj[prop])
+            } else if (typeof obj[prop] === 'object') {
+                Calculate.valuesFromNestedObject(obj[prop], values)
+            } else {
+                values.push(obj[prop])
+            }
+        }
+        return values
+    },
+
+    lengthOfLongestSubstring(string) {
+        let substring = ''
+        let longestLength = 1
+        const splitArray = string.split('');
+        if (!string) return 0
+        for (let i = 0; i < splitArray.length; i++) {
+            substring = splitArray[i];        
+            for (let j = i + 1; !substring.includes(splitArray[j]) && j < splitArray.length ; j++) {
+                substring += splitArray[j];
+                substring.length > longestLength ? longestLength = substring.length : ''            
+            }
+        }
+        return longestLength
     }
 
 }

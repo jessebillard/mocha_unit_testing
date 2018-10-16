@@ -131,4 +131,67 @@ describe('Calculate', () => {
             assert.deepEqual(result, expected)
         })
     })
+    describe('.valuesFromNestedObject', () => {
+        it('returns an array with all values from deeply nested object', () => {
+            const obj = {
+                name: 'it me jb',
+                address: {
+                    city: 'brooklyn',
+                    state: 'new york',
+                    street: 'your mom',                    
+                },
+                numbers: {
+                    1: {
+                        2: {
+                            finally: 'one two scadoo'
+                        }
+                    }
+                }
+            }
+            const expected = ['it me jb', 'brooklyn', 'new york', 'your mom', 'one two scadoo']
+            const result = Calculate.valuesFromNestedObject(obj, values = [])
+            assert.deepEqual(result, expected)
+        })
+        it('can tell the difference between arrays and objects', () => {
+            const obj = {
+                name: 'it me jb',
+                address: {
+                    city: 'brooklyn',
+                    state: 'new york',
+                    street: 'your mom',                    
+                },                
+                numbers: {
+                    1: {
+                        2: {
+                            finally: 'one two scadoo'
+                        }
+                    }
+                },
+                more: ['sick', 'ya', 'dud'],
+            }
+            const expected = ['it me jb', 'brooklyn', 'new york', 'your mom', 'one two scadoo', 'sick', 'ya', 'dud']
+            const result = Calculate.valuesFromNestedObject(obj, values = [])
+            assert.deepEqual(result, expected)
+        })
+    })
+    describe('.lengthOfLongestSubstring', () => {
+        it('returns the length of the longest substring that doesn\'t have any repeating characters', () => {
+            const string = 'abcabcbb'
+            const expected = 3
+            const result = Calculate.lengthOfLongestSubstring(string)
+            assert.equal(result, expected)
+        })
+        it('handles a string of all the same characters', () => {
+            const string = 'bbbbbbbb'
+            const expected = 1
+            const result = Calculate.lengthOfLongestSubstring(string)
+            assert.equal(result, expected)
+        })
+        it('handles an empty string', () => {
+            const string = ''
+            const expected = 0
+            const result = Calculate.lengthOfLongestSubstring(string)
+            assert.equal(result, expected)
+        })
+    })
 })
