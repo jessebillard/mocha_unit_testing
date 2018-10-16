@@ -93,6 +93,7 @@ const Calculate = {
         return finalVal
     },
 
+    // figure out this one again...couldn't find on codewars or leetcode
     oddOccurrences(array) {
         let result = 0
         array.forEach(num => {
@@ -109,7 +110,8 @@ const Calculate = {
         return result
     },
 
-    rotateArray(array) {
+    rotateArray(array, rotations) {
+        if (!array.length) return array
         while (rotations > 0) {
             let lastOne = array.pop()
             array.unshift(lastOne)

@@ -131,6 +131,32 @@ describe('Calculate', () => {
             assert.deepEqual(result, expected)
         })
     })
+    describe('.rotateArray', () => {
+        it('rotates the array (destructively) 3 times', () => {
+            const array = [1, 2, 3, 4, 5]
+            const expected = [3, 4, 5, 1, 2]
+            const result = Calculate.rotateArray(array, 3)
+            assert.deepEqual(result, expected)
+        })
+        it('rotates the array (destructively) 0 times', () => {
+            const array = [1, 2, 3, 4, 5]
+            const expected = [1, 2, 3, 4, 5]
+            const result = Calculate.rotateArray(array, 0)
+            assert.deepEqual(result, expected)
+        })
+        it('properly rotates an array (desctructively), if array has a length of 1', () => {
+            const array = [1]
+            const expected = [1]
+            const result = Calculate.rotateArray(array, 4)
+            assert.deepEqual(result, expected)
+        })
+        it('handles being passed an empty array', () => {
+            const array = []
+            const expected = []
+            const result = Calculate.rotateArray(array, 3)
+            assert.deepEqual(result, expected)
+        })
+    })
     describe('.valuesFromNestedObject', () => {
         it('returns an array with all values from deeply nested object', () => {
             const obj = {
