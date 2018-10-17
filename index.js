@@ -185,6 +185,19 @@ const Calculate = {
             }
         }
         return longestLength
+    },
+
+    // so far this only works if each internal array has the same length
+    formatStringByArrayColumnOrder(array) {
+        let resultArray = []     
+        for (let i = 0; i < array.length; i++) {
+            for (let j = 0; j < array.length; j++) {
+                if (array[j][i]) {
+                    resultArray.push(`${array[j][i]}`)
+                }
+            }
+        }
+        return resultArray.join(' ')
     }
 
 }

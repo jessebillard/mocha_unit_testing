@@ -220,4 +220,22 @@ describe('Calculate', () => {
             assert.equal(result, expected)
         })
     })
+    describe('.formatStringByArrayColumnOrder', () => {
+        it('takes an array as an argument', () => {
+
+        })
+        it('takes an array filled with equal length arrays', () => {
+
+        })
+        it('formats a string by the column order of the internal arrays', () => {
+            const array = [
+                ['', '', 'jb'],
+                ['it', '', ''],
+                ['', 'me', '']
+            ]
+            const expected = 'it me jb'
+            const result = Calculate.formatStringByArrayColumnOrder(array)
+            assert.equal(result, expected)
+        })
+    })
 })
